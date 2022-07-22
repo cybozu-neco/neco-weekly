@@ -194,11 +194,86 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="neco-weekly-2022-07-22号">Neco Weekly (2022-07-22号)</h1>
-<p><blockquote class="embedly-card"><h4 id="release-v260-·-grafanaloki"><a href="https://github.com/grafana/loki/releases/tag/v2.6.0" target="_blank">Release v2.6.0 · grafana/loki</a></h4><p>Query multiple tenants at once. We&apos;ve introduced cross-tenant query federation, which allows you to issue one query to multiple tenants and get a single, consolidated result. This is great for scenarios where you need a global view of logs within your multi-tenant cluster. For more information on how to enable this feature, see Multi-Tenancy.</p></blockquote></p>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
 
-<p><blockquote class="embedly-card"><h4 id="k8s-gateway-api-is-here---whats-in-it-for-you"><a href="https://www.groundcover.com/blog/k8s-gateway-api" target="_blank">K8s Gateway API is here - what&apos;s in it for you?</a></h4><p>Yesterday (July 13th, 2022), the Kubernetes SIG-Network announced version 0.5.0 of the much anticipated Gateway API. What is so special about this release you ask? It&apos;s that finally, major components of the api are graduating to beta (v1beta1) - which means we will soon start to see more projects using those primitives - and they might even be good enough for the early adopters among us to give them a try.</p></blockquote></p>
-<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+<p>サイボウズ Neco チームでは、毎週金曜日に Neco Weekly という「1週間の間に見つけた CloudNative 関連のネタを共有する会」を社内で開催することにしました。</p>
+<p>この会の中で紹介したネタを発信してみようと思います。</p>
+<p>Neco チームの取り組みに関しては、以下のページをご覧ください。</p>
+<blockquote class="embedly-card" data-card-controls="0"><h4 id="cybozu-neco---overview"><a href="https://github.com/cybozu-neco" target="_blank">cybozu-neco - Overview</a></h4><p>A machine account for Neco. cybozu-neco has 3 repositories available. Follow their code on GitHub.</p></blockquote>
+
+<h2 id="loki-v260-リリース">Loki v2.6.0 リリース</h2>
+<blockquote class="embedly-card"><h4 id="release-v260-·-grafanaloki"><a href="https://github.com/grafana/loki/releases/tag/v2.6.0" target="_blank">Release v2.6.0 · grafana/loki</a></h4><p>Query multiple tenants at once. We&apos;ve introduced cross-tenant query federation, which allows you to issue one query to multiple tenants and get a single, consolidated result. This is great for scenarios where you need a global view of logs within your multi-tenant cluster. For more information on how to enable this feature, see Multi-Tenancy.</p></blockquote>
+
+<p>Loki v2.6.0 がリリースされました。</p>
+<p>これまでは長期間のログを指定したクエリの実行にとても時間がかかっていたのですが、クエリを30分ごとの小さなクエリに分割して並列実行するようになるそうです。</p>
+<p>性能向上が期待できそうでとても楽しみです。</p>
+<h2 id="kubernetes-の-gateway-api-が-beta-に">Kubernetes の Gateway API が beta に</h2>
+<blockquote class="embedly-card" data-card-controls="0"><h4 id="kubernetes-gateway-api-graduates-to-beta"><a href="https://kubernetes.io/blog/2022/07/13/gateway-api-graduates-to-beta/" target="_blank">Kubernetes Gateway API Graduates to Beta</a></h4><p>Authors: Shane Utt (Kong), Rob Scott (Google), Nick Young (VMware), Jeff Apple (HashiCorp) We are excited to announce the v0.5.0 release of Gateway API. For the first time, several of our most important Gateway API resources are graduating to beta.</p></blockquote>
+
+<blockquote class="embedly-card"><h4 id="k8s-gateway-api-is-here---whats-in-it-for-you"><a href="https://www.groundcover.com/blog/k8s-gateway-api" target="_blank">K8s Gateway API is here - what&apos;s in it for you?</a></h4><p>Yesterday (July 13th, 2022), the Kubernetes SIG-Network announced version 0.5.0 of the much anticipated Gateway API. What is so special about this release you ask? It&apos;s that finally, major components of the api are graduating to beta (v1beta1) - which means we will soon start to see more projects using those primitives - and they might even be good enough for the early adopters among us to give them a try.</p></blockquote>
+
+<p>Kubernetes の Ingress の後継として開発が進められている Gateway API がついにベータとなりました。</p>
+<p>Gateway API は Ingress と比べて様々なメリットがあります。</p>
+<ul>
+<li>リソース作成の役割分担が明確（管理者が Gateway/GatewayClass を作成し、アプリ開発者が HTTPRoute を作成するなど）</li>
+<li>Ingress リソースは表現力が乏しく設定をアノテーションで書く必要があったが、Gateway API ではきちんと API の設計がおこなわれている。</li>
+<li>Namespace をまたがったルーティング設定が可能</li>
+</ul>
+<p>Neco では L7LB として <a href="https://projectcontour.io" target="_blank">Contour</a> を採用し、サービスをクラスタ外に公開するために <a href="https://projectcontour.io/docs/v1.20.1/config/fundamentals/" target="_blank">HTTPProxy</a> というカスタムリソースを利用しています。</p>
+<p>Contour はすでに Gateway API に対応しているようです。</p>
+<ul>
+<li><a href="https://projectcontour.io/guides/gateway-api/" target="_blank">Using Gateway API (v1alpha2) with Contour</a></li>
+</ul>
+<p>今後、HTTPProxy から Gateway API への置き換えが発生することを考えるとやや気が重たいですね🙁</p>
+<h2 id="cilium-112-リリース">Cilium 1.12 リリース</h2>
+<blockquote class="embedly-card" data-card-controls="0"><h4 id="cilium-112---ingress-multi-cluster-service-mesh-external-workloads-and-much-more"><a href="https://isovalent.com/blog/post/cilium-release-112/" target="_blank">Cilium 1.12 - Ingress, Multi-Cluster, Service Mesh, External Workloads, and much more</a></h4><p>Today, we are excited to announce the release of Cilium 1.12. This is yet another massive release. While writing this blog, we have jokingly mentioned that we will soon have to publish the release blog as a book.</p></blockquote>
+
+<p>Cilium は活発に開発が進められており、今回のリリースノートもかなり膨大なものになっています。
+Ingress や Service Mesh などたくさんの新機能が実装されており、Cilium はただの CNI 実装のひとつではなく、大きなネットワークエコシステムを目指しているように思えます。</p>
+<p>今回は、リリースノートから気になるものをいくつかピックアップしてみます。</p>
+<ul>
+<li>Sidecar-free datapath option: Istio などのサービスメッシュ実装ではサイドカー方式が採用されているのですが、Cilium ではサイドカーなし方式がオプションとして選べるようになったとのこと。どちらの方式がよいのか議論になっているようなので様子を見守りたいところ。</li>
+<li>Egress Gateway promoted to Stable: Neco チームとしても Egress Gateway 機能を利用したいと考えています。しかし現状は HA 構成じゃないのでプロダクションで利用するのはちょっと難しいか。</li>
+<li>Improved BGP control plane: IPv6 対応のために MetalLB から GoBGP に置き換えていくことを決定。Neco ではロードバランサーの VIP を広告するために MetalLB を利用しているが、そこはまだ GoBGP に置き換えられていない模様。今後 MetalLB から GoBGP への置き換えを考えないといけないかもしれないので要注目。</li>
+<li>Improved Multi-Homing for Load Balancer: これまで複数のデバイスを持つノードで正しく経路が利用されていなかったがこれが改善された。これは Neco チームがコントリビュートしたもの。</li>
+</ul>
+<p>Neco チームでは現在 Cilium への移行を進めており、その移行作業の中でかなりの数の不具合を見つけています。
+今回のリリースでは、なんと7件もの PR が取り込まれました🎉🎉🎉</p>
+<ul>
+<li>bgp: Check the Condition.Ready field when adding ready endpoints (<a href="https://github.com/cilium/cilium/pull/20176" target="_blank">#20176</a>, @ysksuzuki)</li>
+<li>daemon: Support the wildcard option for directRoutingDevice (<a href="https://github.com/cilium/cilium/pull/17930" target="_blank">#17930</a>, @ysksuzuki)</li>
+<li>bpf: Fix maglev hash with hostServices.hostNamespaceOnly (<a href="https://github.com/cilium/cilium/pull/18336" target="_blank">#18336</a>, @ysksuzuki)</li>
+<li>endpoint: Fix packets to host dropped with the chaining mode and host firewall (<a href="https://github.com/cilium/cilium/pull/19734" target="_blank">#19734</a>, @ysksuzuki)</li>
+<li>docs: Fix incorrect values for hubble-ui standalone install (<a href="https://github.com/cilium/cilium/pull/18661" target="_blank">#18661</a>, @ysksuzuki)</li>
+<li>neigh: Support multi device neighbor discovery (Backport PR <a href="https://github.com/cilium/cilium/pull/20333" target="_blank">#20333</a>, Upstream PR <a href="https://github.com/cilium/cilium/pull/20092" target="_blank">#20092</a>, @ysksuzuki)</li>
+<li>test: Fix make target for k8s tests (Backport PR <a href="https://github.com/cilium/cilium/pull/20401" target="_blank">#20401</a>, Upstream PR <a href="https://github.com/cilium/cilium/pull/20264" target="_blank">#20264</a>, @ysksuzuki)</li>
+</ul>
+<h2 id="ピアリング戦記">ピアリング戦記</h2>
+<blockquote class="embedly-card" data-card-controls="0"><h4 id="ピアリング戦記-―-日本のインターネットを繋ぐ技術者たち"><a href="https://www.lambdanote.com/products/peering" target="_blank">ピアリング戦記 ― 日本のインターネットを繋ぐ技術者たち</a></h4><p>「ネットワークのネットワーク」って、こういう意味だったんだ！ 技術的な仕様の解説だけでは語れない、人と人を繋ぐネットワーク技術だからこそ立ち現れる生々しい舞台裏を、2020年代の日本のインターネットの大規模構造に影響をもたらした当事者たちへの取材とインタビューをとおして解き明かす！ 小川晃通 著 150ページ A5判 2022年7月13日 発行 第1章 ピアリングを巡る静かな戦い 第2章 データセンターとその立地 第3章 IXとは何か? 国ごとに違うIX 第4章 ピアリング相手の探し方 第5章 コンテンツ事業者の台頭</p></blockquote>
+
+<p>Neco チームではデータセンターネットワークの実装に BGP を利用しています。</p>
+<ul>
+<li><a href="https://blog.cybozu.io/entry/bgp-basics" target="_blank">データセンター内で使う BGP の基礎知識</a></li>
+</ul>
+<p>ですが、このピアリング戦記は BGP の詳しい知識はなくても読むことができます。</p>
+<p>日本のインターネットがどのように構築されてきたのかという歴史を、たくさんのインタビューを通じて知ることができるとても面白い一冊でした。</p>
+<h2 id="connect-a-better-grpc">Connect: A better gRPC</h2>
+<blockquote class="embedly-card" data-card-controls="0"><h4 id="connect-a-better-grpc"><a href="https://buf.build/blog/connect-a-better-grpc" target="_blank">Connect: A better gRPC</a></h4><p>Today we&apos;re releasing Connect, a slim framework for building browser and gRPC-compatible HTTP APIs. Connect is production-ready - focused, simple, and debuggable - and it&apos;s fully compatible with gRPC clients and servers. If you&apos;re frustrated by the complexity and instability of today&apos;s gRPC libraries, we think you&apos;ll find Connect a breath of fresh air.</p></blockquote>
+
+<p>Neco チームでは <a href="https://github.com/cybozu-go/moco" target="_blank">MOCO</a> や <a href="https://github.com/cybozu-go/coil" target="_blank">Coil</a> の実装で gRPC を利用しています。</p>
+<p>gRPC に興味がある方は以下のチュートリアルも参考にしてください。</p>
+<ul>
+<li><a href="https://github.com/ymmt2005/grpc-tutorial" target="_blank">gRPC チュートリアル</a></li>
+</ul>
+<p>これまで広く使われてきた gRPC の Go 実装は <a href="https://github.com/grpc/grpc-go" target="_blank">grpc-go</a> です。
+go-grpc は自前で HTTP/2 を実装しているため Go の HTTP のエコシステムが利用できなかったり、JavaScript から gRPC のサービスを呼び出すためにプロキシが必要だったり、いくつかの問題があります。</p>
+<p>それらを解決するために Connect という新しい gRPC の実装が登場したようです。</p>
+<p>Connect は現在ベータ版とのことですが、2022年10月には安定版のリリースが予定されているようです。
+今後は gRPC 実装の一つの選択肢として検討してみてもいいかもしれませんね。</p>
+<h2 id="おわりに">おわりに</h2>
+<p>Neco Weekly の取り組みは <a href="https://zenn.dev/korosuke613/articles/productivity-weekly-1st-aniversary" target="_blank">Productivity Weekly</a> を参考にして始めました。</p>
+<p>Productivity Weekly は毎週かなりしっかりとした記事を書いていて尊敬の念しかありません。</p>
+<p>Neco Weekly では同水準の記事を提供し続けるのは難しいとは思いますが、毎週記事を書くことが負担になりすぎない程度に、ゆるく長く続けていきたいなと思います。</p>
 
                                 
                                 </section>
@@ -234,7 +309,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2022-07-22号","level":"1.2.1.1","depth":3,"previous":{"title":"7月","level":"1.2.1","depth":2,"ref":"","articles":[{"title":"2022-07-22号","level":"1.2.1.1","depth":3,"path":"2022/07/2022-07-22.md","ref":"2022/07/2022-07-22.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"2022/07/2022-07-22.md","mtime":"2022-07-22T11:17:13.777Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-07-22T11:17:48.513Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"2022-07-22号","level":"1.2.1.1","depth":3,"previous":{"title":"7月","level":"1.2.1","depth":2,"ref":"","articles":[{"title":"2022-07-22号","level":"1.2.1.1","depth":3,"path":"2022/07/2022-07-22.md","ref":"2022/07/2022-07-22.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"2022/07/2022-07-22.md","mtime":"2022-07-22T14:55:19.279Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-07-22T14:55:43.514Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -286,10 +361,6 @@
     </script>
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
-    
-        
-        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
