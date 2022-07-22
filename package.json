@@ -1,0 +1,20 @@
+{
+  "name": "neco-weekly",
+  "version": "1.0.0",
+  "description": "Neco Weekly",
+  "main": "book.js",
+  "scripts": {
+    "build": "honkit build",
+    "serve": "honkit serve",
+    "deploy": "gh-pages -d _book"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cybozu-neco/neco-weekly.git"
+  },
+  "author": "cybozu-neco",
+  "dependencies": {
+    "gh-pages": "^4.0.0",
+    "honkit": "^3.7.5"
+  }
+}
