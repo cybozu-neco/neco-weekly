@@ -232,10 +232,22 @@
 Ingress や Service Mesh などたくさんの新機能が実装されており、Cilium はただの CNI 実装のひとつではなく、大きなネットワークエコシステムを目指しているように思えます。</p>
 <p>今回は、リリースノートから気になるものをいくつかピックアップしてみます。</p>
 <ul>
-<li>Sidecar-free datapath option: Istio などのサービスメッシュ実装ではサイドカー方式が採用されているのですが、Cilium ではサイドカーなし方式がオプションとして選べるようになったとのこと。どちらの方式がよいのか議論になっているようなので様子を見守りたいところ。</li>
-<li>Egress Gateway promoted to Stable: Neco チームとしても Egress Gateway 機能を利用したいと考えています。しかし現状は HA 構成じゃないのでプロダクションで利用するのはちょっと難しいか。</li>
-<li>Improved BGP control plane: IPv6 対応のために MetalLB から GoBGP に置き換えていくことを決定。Neco ではロードバランサーの VIP を広告するために MetalLB を利用しているが、そこはまだ GoBGP に置き換えられていない模様。今後 MetalLB から GoBGP への置き換えを考えないといけないかもしれないので要注目。</li>
-<li>Improved Multi-Homing for Load Balancer: これまで複数のデバイスを持つノードで正しく経路が利用されていなかったがこれが改善された。これは Neco チームがコントリビュートしたもの。</li>
+<li>Sidecar-free datapath option: <ul>
+<li>Istio などのサービスメッシュ実装ではサイドカー方式が採用されているのですが、Cilium ではサイドカーなし方式がオプションとして選べるようになったとのこと。どちらの方式がよいのか議論になっているようなので様子を見守りたいところ。</li>
+</ul>
+</li>
+<li>Egress Gateway promoted to Stable: <ul>
+<li>Neco チームとしても Egress Gateway 機能を利用したいと考えています。しかし現状は HA 構成じゃないのでプロダクションで利用するのはちょっと難しいか。</li>
+</ul>
+</li>
+<li>Improved BGP control plane: <ul>
+<li>IPv6 対応のために MetalLB から GoBGP に置き換えていくことを決定。Neco ではロードバランサーの VIP を広告するために MetalLB を利用しているが、そこはまだ GoBGP に置き換えられていない模様。今後 MetalLB から GoBGP への置き換えを考えないといけないかもしれないので要注目。</li>
+</ul>
+</li>
+<li>Improved Multi-Homing for Load Balancer: <ul>
+<li>これまで複数のデバイスを持つノードで正しく経路が利用されていなかったがこれが改善された。これは Neco チームがコントリビュートしたもの。</li>
+</ul>
+</li>
 </ul>
 <p>Neco チームでは現在 Cilium への移行を進めており、その移行作業の中でかなりの数の不具合を見つけています。
 今回のリリースでは、なんと7件もの PR が取り込まれました🎉🎉🎉</p>
@@ -309,7 +321,7 @@ go-grpc は自前で HTTP/2 を実装しているため Go の HTTP のエコシ
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2022-07-22号","level":"1.2.1.1","depth":3,"previous":{"title":"7月","level":"1.2.1","depth":2,"ref":"","articles":[{"title":"2022-07-22号","level":"1.2.1.1","depth":3,"path":"2022/07/2022-07-22.md","ref":"2022/07/2022-07-22.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"2022/07/2022-07-22.md","mtime":"2022-07-22T14:55:19.279Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-07-22T14:55:43.514Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"2022-07-22号","level":"1.2.1.1","depth":3,"previous":{"title":"7月","level":"1.2.1","depth":2,"ref":"","articles":[{"title":"2022-07-22号","level":"1.2.1.1","depth":3,"path":"2022/07/2022-07-22.md","ref":"2022/07/2022-07-22.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"2022/07/2022-07-22.md","mtime":"2022-07-22T15:04:31.548Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-07-22T15:06:01.483Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
