@@ -15,6 +15,9 @@
   "author": "cybozu-neco",
   "dependencies": {
     "gh-pages": "^4.0.0",
+    "gitbook-plugin-back-to-top-button": "^0.1.4",
+    "gitbook-plugin-intopic-toc": "^1.1.1",
+    "gitbook-plugin-toolbar": "^0.6.0",
     "honkit": "^3.7.5"
   }
 }
