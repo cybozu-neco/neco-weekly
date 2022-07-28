@@ -4,7 +4,8 @@ module.exports = {
   "plugins": [
     "back-to-top-button",
     "intopic-toc",
-    "toolbar"
+    "toolbar",
+    "rss"
   ],
   "pluginsConfig": {
 "intopic-toc": {
@@ -24,6 +25,12 @@ module.exports = {
           "url": "https://github.com/cybozu-neco/neco-weekly",
         }
       ]
+    },
+    "rss": {
+      "title": "Neco Weekly",
+      "author": "cybozu-neco",
+      "site_url": "https://cybozu-neco.github.io/neco-weekly/",
+      "feed_url": "https://cybozu-neco.github.io/neco-weekly/rss.xml"
     }
   }
 };
