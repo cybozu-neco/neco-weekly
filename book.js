@@ -1,6 +1,8 @@
 module.exports = {
   "root": "./",
-  "title": "neco-weekly",
+  "title": "Neco Weekly",
+  "description": "最近気になる Cloud Native 関連のネタ",
+  "image": "https://cybozu-neco.github.io/neco-weekly/neco-weekly.png",
   "plugins": [
     "back-to-top-button",
     "intopic-toc",
@@ -8,7 +10,7 @@ module.exports = {
     "rss"
   ],
   "pluginsConfig": {
-"intopic-toc": {
+    "intopic-toc": {
       "selector": ".markdown-section h1, .markdown-section h2, .markdown-section h3",
       "mode": "nested",
       "maxDepth": 2,
