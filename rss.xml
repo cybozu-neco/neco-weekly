@@ -4,7 +4,7 @@
         <description><![CDATA[Neco Weekly]]></description>
         <link>https://cybozu-neco.github.io/neco-weekly/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 20 Sep 2022 09:32:12 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 03 Oct 2022 05:46:27 GMT</lastBuildDate>
         <atom:link href="https://cybozu-neco.github.io/neco-weekly/rss.xml" rel="self" type="application/rss+xml"/>
         <author><![CDATA[cybozu-neco]]></author>
         <item>
@@ -12,6 +12,14 @@
             <description><![CDATA[サイボウズ Neco チームでは、 Neco Weekly という「最近気になる Cloud Native 関連のネタを共有する会」を社内で開催しています。]]></description>
             <link>https://cybozu-neco.github.io/neco-weekly/</link>
             <guid isPermaLink="true">https://cybozu-neco.github.io/neco-weekly/</guid>
+            <dc:creator><![CDATA[cybozu-neco]]></dc:creator>
+        </item>
+        <item>
+            <title><![CDATA[Neco Weekly (2022-09-30号)]]></title>
+            <description><![CDATA[サイボウズ Neco チームでは、 Neco Weekly という「最近気になる Cloud Native 関連のネタを共有する会」を社内で開催しています。
+本記事は共有会の中で紹介したネタをまとめたものです。]]></description>
+            <link>https://cybozu-neco.github.io/neco-weekly/2022/09/2022-09-30.html</link>
+            <guid isPermaLink="true">https://cybozu-neco.github.io/neco-weekly/2022/09/2022-09-30.html</guid>
             <dc:creator><![CDATA[cybozu-neco]]></dc:creator>
         </item>
         <item>
