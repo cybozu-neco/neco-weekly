@@ -2,9 +2,9 @@
 
 サイボウズ Neco チームでは、 Neco Weekly という「最近気になる Cloud Native 関連のネタを共有する会」を社内で開催しています。
 
-この共有会の中で紹介したネタをここで社外発信しています。
+この共有会の中で紹介したネタを Zenn Publication で社外発信しています。
 
-- [https://cybozu-neco.github.io/neco-weekly/](https://cybozu-neco.github.io/neco-weekly/)
+- https://zenn.dev/p/cybozu_neco
 
 ## Neco チームとは
 
